@@ -1,0 +1,31 @@
+service:
+  name: pdf
+
+plugins:
+  - serverless-offline
+  - serverless-apigw-binary
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-central-1
+  stage: ${opt:stage, 'development'}
+  environment:
+    ENV: ${self:provider.stage}
+
+custom:
+  apigwBinary:
+    types:
+      - '*/*'
+
+functions:
+  pdf:
+    handler: pdf.pdf
+    events:
+      - http:
+          path: pdf/{yearMonth}
+          method: get
+          cors: true
+          parameters:
+            paths:
+              yearMonth: true
