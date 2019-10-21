@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "chrome-aws-lambda": "^1.18.1",
-    "knex": "^0.18.3",
+    "knex": "^0.19.5",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
     "pug": "^2.0.4",
