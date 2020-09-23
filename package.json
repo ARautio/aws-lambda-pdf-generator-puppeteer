@@ -1,6 +1,6 @@
 {
   "name": "pdf",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "AWS Lambda PDF generation",
   "author": "Aki Rautio <aki.rautio@gmail.com>",
   "homepage": "",
