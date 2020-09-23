@@ -1,6 +1,6 @@
 {
   "name": "pdf",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "AWS Lambda PDF generation",
   "author": "Aki Rautio <aki.rautio@gmail.com>",
   "homepage": "",
@@ -19,16 +19,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^2.1.1",
-    "knex": "^0.20.13",
-    "pg": "^8.0.0",
+    "chrome-aws-lambda": "^5.3.0",
+    "knex": "^0.21.5",
+    "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
-    "pug": "^2.0.4",
-    "puppeteer-core": "^2.1.1"
+    "pug": "^3.0.0",
+    "puppeteer-core": "^5.3.1"
   },
   "devDependencies": {
-    "serverless": "^1.67.1",
+    "serverless": "^2.1.1",
     "serverless-apigw-binary": "^0.4.4",
-    "serverless-offline": "^6.1.4"
+    "serverless-offline": "^6.7.0"
   }
 }
