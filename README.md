@@ -27,7 +27,7 @@ When running this setup with 1024 MB memory, it takes rougly 4 seconds to execut
 
 Puppeteer is pretty versatile so you can create PDF from your own html file like in this example with PUG template language or calling URL.
 
-More information regarding this repository can found from ( Generate a PDF in AWS Lambda with NodeJS and Puppeteer)[https://dev.to/akirautio/generate-a-pdf-in-aws-lambda-with-nodejs-and-puppeteer-2b93] dev.to post.
+More information regarding this repository can found from [Generate a PDF in AWS Lambda with NodeJS and Puppeteer](https://dev.to/akirautio/generate-a-pdf-in-aws-lambda-with-nodejs-and-puppeteer-2b93) dev.to post.
 
 ## Security
 
