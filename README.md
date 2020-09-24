@@ -31,14 +31,14 @@ More information regarding this repository can found from ( Generate a PDF in AW
 
 ## Security
 
-Since this deployment setup exposes your PDF generator straight to open internet, because it can be called without any restrictions. Depending on your solution this may also cause an issue since the content of your PDF is exposed outside if correct parameters are given.
+Since this deployment setup exposes your PDF generator straight to open the internet, it can be called just by knowing the URL. This can lead to the abuse of your application resulting in either your data to leak or getting a huge bill from AWS.
 
-To mitigate this issue there are several ways to increase the security and reduce / block the abuse:
+To mitigate the risk, there are several ways to increase security and reduce/block the abuse:
 
-1. Enabling API key to API Gateway to limit an access and monitor the usage. In this option, a client needs to send an API key in request to be able to use the lambda function so you need to create a way get the API key to the client. This won't fully block the abuse since API key is exposed when making the request and same key can be used again but it will give you a chance to limit the usage amount. This works pretty well when you don't have authorization in your application.
+1. Enabling the API key to API Gateway to limit access and monitor the usage. In this option, a client needs to send an API key in the request to be able to use the lambda function so you need to create a way to get the API key to the client. It won't fully block the abuse since the API key is exposed when making the request and the same key can be used again but it will give you a chance to limit the usage amount. This works pretty well when you don't have authorization in your application.
 
 Serverless has [API key plugin](https://www.serverless.com/plugins/serverless-add-api-key) to create this for your lambda function.
 
-2. Enable authorizer to API Gateway (either [AWS_IAM](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/#http-endpoints-with-aws_iam-authorizers) or [custom](https://www.serverless.com/framework/docs/providers/aws/events/apigateway#http-endpoints-with-custom-authorizers)). In this option, you need to have a user authorization set up (either provided by AWS or using a custom one). This method blocks the abuse from unauthorised use but if you have an open registration, the user can still make unlimited amount of request.
+2. Enable authorizer to API Gateway (either [AWS_IAM](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/#http-endpoints-with-aws_iam-authorizers) or [custom](https://www.serverless.com/framework/docs/providers/aws/events/apigateway#http-endpoints-with-custom-authorizers)). In this option, you need to have a user authorization set up (either provided by AWS or using a custom one). This method blocks the abuse from unauthorized use but if you have open registration, the user can still make an unlimited amount of request.
 
-3. Checking authorization before starting up puppeteer. This is almost the same as the previous option but the authorization check is done inside the lambda and not in API gateway. The difference is that you don't have to have a custom authorization function the lambda function handles itself. This won't fully block the abuse since the endpoint will respond everytime but it makes execution time for unauthorized use a lot smaller.
+3. Checking authorization before starting up puppeteer. This is almost the same as the previous option but the authorization check is done inside the lambda and not in the API gateway. The difference is that you don't have to have a custom authorization function the Lambda function handles itself. It won't block the abuse since the endpoint will respond every time but it makes execution time for unauthorized use a lot smaller.
