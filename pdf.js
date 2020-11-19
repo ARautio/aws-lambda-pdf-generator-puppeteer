@@ -15,7 +15,7 @@ module.exports.pdf = async (event, context) => {
   const selDate = new Date(year, month)
   const filter = {
     month: selDate.toLocaleString('en', { month: 'long' }),
-    year: selDate.getFullYear()
+    year: selDate.getFullYear(),
   }
 
   // Fetch data with knex
@@ -24,7 +24,7 @@ module.exports.pdf = async (event, context) => {
     .from('sales')
     .where({
       year: filter.year,
-      month: selDate.getMonth() + 1
+      month: selDate.getMonth() + 1,
     })
 
   const template = pug.compileFile('./src/template.pug')
@@ -36,7 +36,7 @@ module.exports.pdf = async (event, context) => {
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath,
-      headless: chromium.headless
+      headless: chromium.headless,
     })
 
     const page = await browser.newPage()
@@ -44,18 +44,19 @@ module.exports.pdf = async (event, context) => {
     const pdf = await page.pdf({
       format: 'A4',
       printBackground: true,
-      margin: { top: '1cm', right: '1cm', bottom: '1cm', left: '1cm' }
+      displayHeaderFooter: true,
+      margin: { top: '1.8cm', right: '1cm', bottom: '1cm', left: '1cm' },
     })
 
     // TODO: Response with PDF (or error if something went wrong )
     const response = {
       headers: {
         'Content-type': 'application/pdf',
-        'content-disposition': 'attachment; filename=test.pdf'
+        'content-disposition': 'attachment; filename=test.pdf',
       },
       statusCode: 200,
       body: pdf.toString('base64'),
-      isBase64Encoded: true
+      isBase64Encoded: true,
     }
     context.succeed(response)
   } catch (error) {
