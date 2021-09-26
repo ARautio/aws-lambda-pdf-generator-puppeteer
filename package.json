@@ -19,16 +19,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^9.1.0",
-    "knex": "^0.95.4",
-    "pg": "^8.6.0",
-    "pg-hstore": "^2.3.3",
+    "chrome-aws-lambda": "^10.1.0",
+    "knex": "^0.95.11",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
     "pug": "^3.0.2",
-    "puppeteer-core": "^9.1.1"
+    "puppeteer-core": "^10.4.0"
   },
   "devDependencies": {
-    "serverless": "^2.40.0",
+    "serverless": "^2.60.0",
     "serverless-apigw-binary": "^0.4.4",
-    "serverless-offline": "^7.0.0"
+    "serverless-offline": "^8.2.0"
   }
 }
