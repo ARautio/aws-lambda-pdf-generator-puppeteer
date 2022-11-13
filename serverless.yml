@@ -3,10 +3,18 @@ service: pdf
 plugins:
   - serverless-offline
   - serverless-apigw-binary
+  - serverless-plugin-typescript
+
+package:
+  patterns:
+    - "!layer/**"
+    - "!node_modules/@sparticuz/**"
+    - "!node_modules/puppeteer-core/.local-chromium/**"
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  deploymentMethod: direct
+  runtime: nodejs16.x
   region: eu-central-1
   stage: ${opt:stage, 'development'}
   environment:
@@ -17,11 +25,23 @@ provider:
 custom:
   apigwBinary:
     types:
-      - '*/*'
+      - "*/*"
+
+layers:
+  chromium:
+    name: "chromium"
+    compatibleRuntimes:
+      - nodejs16.x
+    compatibleArchitectures:
+      - x86_64
+    package:
+      artifact: "./layer/chromium/chromium.zip"
 
 functions:
   pdf:
     handler: pdf.pdf
+    timeout: 30
+    memorySize: 2048
     events:
       - http:
           path: pdf/{yearMonth}
@@ -31,3 +51,5 @@ functions:
             parameters:
               paths:
                 yearMonth: true
+    layers:
+      - { Ref: ChromiumLambdaLayer }
