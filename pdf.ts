@@ -22,7 +22,7 @@ export const pdf = async (
       browser = await puppeteer.launch({
         args: chromium.args,
         defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath,
+        executablePath: await chromium.executablePath(),
         headless: chromium.headless,
         env: {
           DISPLAY: IS_OFFLINE ? ":0" : undefined,
@@ -30,7 +30,7 @@ export const pdf = async (
       });
 
       const page = await browser.newPage();
-      page.setContent(html);
+      await page.setContent(html);
       const pdf = await page.pdf({
         format: "A4",
         displayHeaderFooter: true,
